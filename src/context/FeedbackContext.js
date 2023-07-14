@@ -22,6 +22,11 @@ export const FeedbackProvider = ({ children }) => {
         },
     ])
 
+    const [feedbackEdit, setfeedbackEdit] = useState({
+        item: {},
+        edit: false
+    })
+
     function handleDelete(id) {
         console.log(`app ${id}`);
         setFeedback(feedback.filter((item) => item.id !== id))
@@ -33,12 +38,27 @@ export const FeedbackProvider = ({ children }) => {
         console.log(newFeedback);
     }
 
+    function updateFeedback(id,updItem) {
+        console.log(id, updItem);
+        setFeedback(feedback.map((item) => (item.id === id ? {...item, ...updItem} : item)))
+    }
+
+    function editFeedback(item) {
+        setfeedbackEdit({
+            item,
+            edit: true
+        })
+    }
+
     return (
 
         <FeedbackContext.Provider value={{
             feedback,
+            feedbackEdit,
             handleDelete,
             addFeedback,
+            editFeedback,
+            updateFeedback,
         }}>
             {children}
         </FeedbackContext.Provider>

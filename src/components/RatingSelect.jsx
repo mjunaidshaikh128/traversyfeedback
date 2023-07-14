@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import FeedbackContext from "../context/FeedbackContext";
 
-const RatingSelect = ({setRating}) => {
+
+const RatingSelect = ({ setRating }) => {
     const [selected, setSelected] = useState(10)
+
+    const { feedbackEdit } = useContext(FeedbackContext)
+
+    useEffect(() => {
+        setSelected(feedbackEdit.item.rating)
+    }, [feedbackEdit])
 
     function handleChange(e) {
         setSelected(+e.currentTarget.value)
@@ -9,7 +17,7 @@ const RatingSelect = ({setRating}) => {
     }
     return (
         <div>
-            <ul style={{listStyleType: 'none'}}>
+            <ul style={{ listStyleType: 'none' }}>
                 <li>
                     <input
                         type="radio"

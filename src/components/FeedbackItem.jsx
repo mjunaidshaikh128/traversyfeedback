@@ -1,14 +1,15 @@
 import { useState } from "react"
 import Card from "./shared/Card"
-import { FaTimes } from 'react-icons/fa'
+import { FaTimes, FaEdit } from 'react-icons/fa'
 import { useContext } from "react"
 import FeedbackContext from "../context/FeedbackContext"
 
 const FeedbackItem = ({ item }) => {
-    const { handleDelete } = useContext(FeedbackContext)
+    const { deleteFeedback, editFeedback } = useContext(FeedbackContext)
     return (
-        <Card reverse={false}>
-            <FaTimes onClick={() => handleDelete(item.id)} />
+        <Card reverse={false}>  
+            <FaTimes onClick={() => deleteFeedback(item.id)} />
+            <FaEdit onClick={() => editFeedback(item)} />
             <h3>{item.rating}</h3>
             <p>{item.text}</p>
         </Card>
