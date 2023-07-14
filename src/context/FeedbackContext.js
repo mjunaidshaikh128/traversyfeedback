@@ -27,7 +27,7 @@ export const FeedbackProvider = ({ children }) => {
         edit: false
     })
 
-    function handleDelete(id) {
+    function deleteFeedback(id) {
         console.log(`app ${id}`);
         setFeedback(feedback.filter((item) => item.id !== id))
     }
@@ -55,7 +55,7 @@ export const FeedbackProvider = ({ children }) => {
         <FeedbackContext.Provider value={{
             feedback,
             feedbackEdit,
-            handleDelete,
+            deleteFeedback,
             addFeedback,
             editFeedback,
             updateFeedback,
